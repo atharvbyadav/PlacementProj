@@ -2,28 +2,141 @@
 {% load static %}
 
 {% block content %}
-<div class="container mt-4">
-    <h1 class="text-center mb-4">Electronics Products</h1>
+<style>
+    .product-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border-radius: 15px;
+        overflow: hidden;
+        border: none;
+        background: #ffffff;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+    
+    .product-image {
+        height: 200px;
+        object-fit: cover;
+        width: 100%;
+    }
+    
+    .product-title {
+        color: #2c3e50;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .product-description {
+        color: #7f8c8d;
+        font-size: 0.9rem;
+        margin-bottom: 15px;
+        height: 60px;
+        overflow: hidden;
+    }
+    
+    .product-price {
+        color: #e74c3c;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+    
+    .product-stock {
+        color: #27ae60;
+        font-weight: 500;
+    }
+    
+    .view-details-btn {
+        background: #3498db;
+        border: none;
+        border-radius: 25px;
+        padding: 8px 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .view-details-btn:hover {
+        background: #2980b9;
+        transform: scale(1.05);
+    }
+    
+    .section-title {
+        color: #2c3e50;
+        font-weight: 700;
+        margin-bottom: 30px;
+        position: relative;
+        padding-bottom: 15px;
+    }
+    
+    .section-title:after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 3px;
+        background: #3498db;
+    }
+    
+    .no-products {
+        text-align: center;
+        padding: 50px;
+        background: #f8f9fa;
+        border-radius: 10px;
+        color: #7f8c8d;
+    }
+</style>
+
+<div class="container mt-5">
+    <h1 class="section-title text-center">Electronics Products</h1>
     
     <div class="row">
         {% for product in products %}
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card product-card">
+                {% if product.image %}
+                <img src="{{ product.image.url }}" class="product-image" alt="{{ product.name }}">
+                {% else %}
+                <img src="{% static 'images/default-product.jpg' %}" class="product-image" alt="Default Product Image">
+                {% endif %}
                 <div class="card-body">
-                    <h5 class="card-title">{{ product.name }}</h5>
-                    <p class="card-text">{{ product.description }}</p>
-                    <p class="card-text"><strong>Price: ₹{{ product.price }}</strong></p>
-                    <p class="card-text">Stock: {{ product.stock }}</p>
-                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary">View Details</a>
+                    <h5 class="product-title">{{ product.name }}</h5>
+                    <p class="product-description">{{ product.description }}</p>
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="product-price">₹{{ product.price }}</span>
+                        <span class="product-stock">Stock: {{ product.stock }}</span>
+                    </div>
+                    <a href="{% url 'product_detail' product.id %}" class="btn btn-primary view-details-btn w-100">
+                        View Details
+                    </a>
                 </div>
             </div>
         </div>
         {% empty %}
         <div class="col-12">
-            <p class="text-center">No products available.</p>
+            <div class="no-products">
+                <i class="fas fa-box-open fa-3x mb-3"></i>
+                <h3>No Products Available</h3>
+                <p>Check back later for new electronics products.</p>
+            </div>
         </div>
         {% endfor %}
     </div>
+</div>
+<div>
+    <form action="" method="post">
+        {% csrf_token %}
+        <div>   
+            {{fm.as_p}}
+            <input type="submit" value="Submit">
+        </div>
+        <div>
+            {{fm.as_p}}
+            <input type="submit" value="Submit">
+        </div>
+    </form>
 </div>
 {% endblock %}
 
