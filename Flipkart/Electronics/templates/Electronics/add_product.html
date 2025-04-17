@@ -1,0 +1,176 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .form-section {
+        padding: 100px 0;
+        background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+        border-radius: 20px;
+        margin: 50px 0;
+    }
+    
+    .section-title {
+        color: var(--primary-color);
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .form-container {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .form-control {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        color: var(--text-color);
+        padding: 12px;
+        margin-bottom: 20px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+    }
+    
+    .form-label {
+        color: var(--text-color);
+        margin-bottom: 8px;
+        font-weight: 500;
+    }
+    
+    .submit-btn {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .submit-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+    
+    .form-icon {
+        font-size: 1.5rem;
+        color: var(--primary-color);
+        margin-right: 10px;
+    }
+    
+    .form-group {
+        position: relative;
+        margin-bottom: 25px;
+    }
+    
+    .form-group label {
+        display: flex;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    
+    .form-text {
+        color: var(--text-muted);
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+    
+    .form-header {
+        text-align: center;
+        margin-bottom: 40px;
+    }
+    
+    .form-header h2 {
+        color: var(--text-color);
+        font-size: 2rem;
+        margin-bottom: 10px;
+    }
+    
+    .form-header p {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+    }
+</style>
+
+<div class="container">
+    <div class="form-section">
+        <div class="form-container animate__animated animate__fadeIn">
+            <div class="form-header">
+                <h2>Add New Product</h2>
+                <p>Fill in the details to add a new product to our store</p>
+            </div>
+            
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="id_name">
+                        <i class="fas fa-tag form-icon"></i>
+                        Product Name
+                    </label>
+                    <input type="text" class="form-control" id="id_name" name="name" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_description">
+                        <i class="fas fa-align-left form-icon"></i>
+                        Description
+                    </label>
+                    <textarea class="form-control" id="id_description" name="description" rows="4" required></textarea>
+                </div>
+                
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_price">
+                                <i class="fas fa-dollar-sign form-icon"></i>
+                                Price
+                            </label>
+                            <input type="number" class="form-control" id="id_price" name="price" step="0.01" required>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label for="id_category">
+                                <i class="fas fa-list form-icon"></i>
+                                Category
+                            </label>
+                            <select class="form-control" id="id_category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="laptop">Laptop</option>
+                                <option value="phone">Phone</option>
+                                <option value="accessory">Accessory</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="id_image">
+                        <i class="fas fa-image form-icon"></i>
+                        Product Image
+                    </label>
+                    <input type="file" class="form-control" id="id_image" name="image" accept="image/*" required>
+                    <small class="form-text">Upload a high-quality image of your product</small>
+                </div>
+                
+                <button type="submit" class="submit-btn">
+                    <i class="fas fa-plus-circle me-2"></i>Add Product
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %} 

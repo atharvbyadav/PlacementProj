@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    .about-section {
+        padding: 100px 0;
+        background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+        border-radius: 20px;
+        margin: 50px 0;
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .about-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: url('{% static "images/about-bg.jpg" %}') center/cover;
+        opacity: 0.1;
+        z-index: 0;
+    }
+    
+    .about-content {
+        position: relative;
+        z-index: 1;
+    }
+    
+    .section-title {
+        color: var(--primary-color);
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    
+    .about-text {
+        color: var(--text-muted);
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 30px;
+    }
+    
+    .feature-card {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        margin-bottom: 30px;
+        transition: all 0.3s ease;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        border-color: var(--primary-color);
+    }
+    
+    .feature-icon {
+        font-size: 2.5rem;
+        color: var(--primary-color);
+        margin-bottom: 20px;
+    }
+    
+    .feature-title {
+        color: var(--text-color);
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+    
+    .feature-text {
+        color: var(--text-muted);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+    
+    .team-section {
+        padding: 50px 0;
+    }
+    
+    .team-member {
+        text-align: center;
+        margin-bottom: 30px;
+    }
+    
+    .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 3px solid var(--primary-color);
+        margin-bottom: 20px;
+    }
+    
+    .team-member h4 {
+        color: var(--text-color);
+        font-size: 1.3rem;
+        margin-bottom: 10px;
+    }
+    
+    .team-member p {
+        color: var(--text-muted);
+        font-size: 1rem;
+    }
+</style>
+
+<div class="container">
+    <div class="about-section">
+        <div class="container about-content">
+            <h1 class="section-title animate__animated animate__fadeIn">About Nothing Store</h1>
+            <div class="row">
+                <div class="col-lg-6">
+                    <p class="about-text animate__animated animate__fadeInLeft">
+                        Welcome to Nothing Store, your premier destination for cutting-edge electronics and innovative gadgets. 
+                        Founded in 2024, we've been at the forefront of the tech industry, bringing you the latest and greatest 
+                        in electronic devices and accessories.
+                    </p>
+                    <p class="about-text animate__animated animate__fadeInLeft">
+                        Our mission is to provide our customers with high-quality products, exceptional service, and an 
+                        unforgettable shopping experience. We carefully curate our collection to ensure that every product 
+                        meets our strict standards of quality and innovation.
+                    </p>
+                </div>
+                <div class="col-lg-6">
+                    <p class="about-text animate__animated animate__fadeInRight">
+                        At Nothing Store, we believe in the power of technology to transform lives. That's why we're 
+                        committed to offering products that not only meet your needs but exceed your expectations. 
+                        Our team of tech enthusiasts is always on the lookout for the next big thing in electronics.
+                    </p>
+                    <p class="about-text animate__animated animate__fadeInRight">
+                        Join us on our journey to revolutionize the way you experience technology. Whether you're a 
+                        tech enthusiast or just looking for reliable electronics, Nothing Store has something for everyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="feature-card animate__animated animate__fadeInUp">
+                <div class="feature-icon">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <h3 class="feature-title">Quality Assurance</h3>
+                <p class="feature-text">
+                    Every product undergoes rigorous testing to ensure the highest quality standards.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.2s">
+                <div class="feature-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <h3 class="feature-title">Fast Shipping</h3>
+                <p class="feature-text">
+                    Get your products delivered quickly with our efficient shipping network.
+                </p>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="feature-card animate__animated animate__fadeInUp" style="animation-delay: 0.4s">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3 class="feature-title">24/7 Support</h3>
+                <p class="feature-text">
+                    Our dedicated support team is always ready to assist you with any queries.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="team-section">
+        <h2 class="section-title animate__animated animate__fadeIn">Our Team</h2>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="team-member animate__animated animate__fadeIn">
+                    <img src="{% static 'images/team1.jpg' %}" alt="Team Member">
+                    <h4>John Doe</h4>
+                    <p>CEO & Founder</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="team-member animate__animated animate__fadeIn" style="animation-delay: 0.2s">
+                    <img src="{% static 'images/team2.jpg' %}" alt="Team Member">
+                    <h4>Jane Smith</h4>
+                    <p>CTO</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="team-member animate__animated animate__fadeIn" style="animation-delay: 0.4s">
+                    <img src="{% static 'images/team3.jpg' %}" alt="Team Member">
+                    <h4>Mike Johnson</h4>
+                    <p>Head of Design</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="team-member animate__animated animate__fadeIn" style="animation-delay: 0.6s">
+                    <img src="{% static 'images/team4.jpg' %}" alt="Team Member">
+                    <h4>Sarah Williams</h4>
+                    <p>Marketing Director</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -142,7 +142,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
@@ -152,8 +152,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'add_product' %}">Add Product</a>
+                    </li>
                 </ul>
-                <div class="d-flex">
+                <div class="d-flex ms-3">
                     <a href="{% url 'cart' %}" class="cart-btn">
                         <i class="fas fa-shopping-cart"></i>
                         <span class="cart-count">0</span>
