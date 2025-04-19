@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .register-section {
+        padding: 50px 0;
+        background: linear-gradient(145deg, #1e1e1e, #2a2a2a);
+        border-radius: 20px;
+        margin: 50px 0;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+    
+    .register-title {
+        color: var(--primary-color);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 30px;
+        text-align: center;
+        text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+    
+    .register-form {
+        background: rgba(255, 255, 255, 0.05);
+        border-radius: 15px;
+        padding: 30px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .form-control {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 10px;
+        color: var(--text-color);
+        padding: 12px 15px;
+        transition: all 0.3s ease;
+    }
+    
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(108, 92, 231, 0.25);
+    }
+    
+    .form-label {
+        color: var(--text-color);
+        font-weight: 500;
+        margin-bottom: 8px;
+    }
+    
+    .btn-register {
+        background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+        border: none;
+        border-radius: 25px;
+        padding: 12px 30px;
+        color: white;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        width: 100%;
+    }
+    
+    .btn-register:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+    }
+    
+    .register-links {
+        text-align: center;
+        margin-top: 20px;
+    }
+    
+    .register-links a {
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+    
+    .register-links a:hover {
+        color: var(--primary-color);
+    }
+</style>
+
+<div class="container">
+    <div class="register-section">
+        <h1 class="register-title animate__animated animate__fadeIn">Register</h1>
+        
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+        
+        <div class="register-form animate__animated animate__fadeInUp">
+            <form method="post">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password1" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password1" name="password1" required>
+                </div>
+                <div class="mb-3">
+                    <label for="password2" class="form-label">Confirm Password</label>
+                    <input type="password" class="form-control" id="password2" name="password2" required>
+                </div>
+                <button type="submit" class="btn-register">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </form>
+            <div class="register-links">
+                <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
