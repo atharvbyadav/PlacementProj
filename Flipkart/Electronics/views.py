@@ -29,13 +29,17 @@ def product_detail(request, pk):
 def cart(request):
     return render(request, 'Electronics/cart.html')
 
+def manage_products(request):
+    products = Product.objects.all()
+    return render(request, 'Electronics/manage_products.html', {'products': products})
+
 def add_product(request):
     if request.method == 'POST':
         form = ProductForm(request.POST, request.FILES)
         if form.is_valid():
             product = form.save()
             messages.success(request, f'Product "{product.name}" has been added successfully!')
-            return redirect('home')
+            return redirect('manage_products')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
@@ -49,12 +53,19 @@ def edit_product(request, product_id):
         if form.is_valid():
             product = form.save()
             messages.success(request, f'Product "{product.name}" has been updated successfully!')
-            return redirect('home')
+            return redirect('manage_products')
         else:
             messages.error(request, 'Please correct the errors below.')
     else:
         form = ProductForm(instance=product)
-    return render(request, 'Electronics/edit_product.html', {'form': form, 'product': product})
+    return render(request, 'Electronics/add_product.html', {'form': form, 'product': product, 'action': 'Edit'})
+
+def delete_product(request, product_id):
+    product = get_object_or_404(Product, id=product_id)
+    product_name = product.name
+    product.delete()
+    messages.success(request, f'Product "{product_name}" has been deleted successfully!')
+    return redirect('manage_products')
 
 
 
