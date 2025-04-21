@@ -1,6 +1,14 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views
+from django.contrib import messages
+from django.contrib.auth import logout
+from django.shortcuts import redirect
 from . import views
+
+def logout_view(request):
+    logout(request)
+    messages.success(request, 'You have been successfully logged out!')
+    return redirect('home')
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -16,6 +24,6 @@ urlpatterns = [
     path('edit-product/<int:product_id>/', views.edit_product, name='edit_product'),
     path('delete-product/<int:product_id>/', views.delete_product, name='delete_product'),
     path('login/', auth_views.LoginView.as_view(template_name='Electronics/login.html'), name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('logout/', logout_view, name='logout'),
     path('register/', views.register, name='register'),
 ] 
